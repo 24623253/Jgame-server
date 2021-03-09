@@ -93,7 +93,6 @@ module.exports.update = async (req,res)=>{
 			});
 		})
 		data.img = '/images/swiper/' + nowDate + '.' + imgType
-		console.log(data.img,'<<<<data.img')
 	}else{
 		delete data.img
 	}

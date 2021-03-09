@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken')
 module.exports.login = async (req, res) => {
   // 接收客户端传递过来的账号和密码
   const { username, password } = req.body
-  console.log('传入数据', req.body)
   // 根据用户名来查询数据库是否存在这个用户
   const findUser = await User.findOne({ where: { username } })
   // 判断
@@ -44,7 +43,6 @@ module.exports.login = async (req, res) => {
 module.exports.uniLogin = async (req, res) => {
   // 接收客户端传递过来的账号和密码
   const { username, password } = req.body
-  console.log('传入数据', req.body)
   // 根据用户名来查询数据库是否存在这个用户
   const findUser = await User.findOne({ where: { username } })
   // 判断

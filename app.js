@@ -24,7 +24,6 @@ function getIpAddress() {
 }
 
 let ipAddress = getIpAddress()
-console.log(ipAddress,'123123123123123')
 
 const express = require('express')
 const app = express()
@@ -40,7 +39,6 @@ app.use(express.static(path.join(__dirname,'public')))
 
 const uuid = require('uuid');
 const { request } = require('express');
-console.log(uuid.v1())
 
 // 设置跨域和相应数据格式
 app.all('*', function (req, res, next) {

@@ -84,7 +84,6 @@ module.exports.add = async (req, res) => {
 	const createAppType = await AppType.create({ name, remark, id:uuid.v1() }).catch((err)=> {
 		console.log(err)
 	});
-	console.log(name,remark)
 	res.status(200).send({
 		data: createAppType,
 		message: '增加成功！',

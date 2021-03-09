@@ -104,23 +104,17 @@ module.exports.add = async (req, res) => {
     submitSwipers.map((item,index)=>{
       nowDateArr.push('swiper' + index + Date.now())
       item.imgType = item.name.split('.').filter(item1=>(item1==='jpg') || (item1==='png'))
-      console.log(item.imgType,'<<item.imgType')
       writeFile(item,nowDateArr[index],'swiper/',item.imgType[0])
     })
   }
   const swipersPathList = []
   if(nowDateArr){
-    console.log(nowDateArr,'<<<now')
     nowDateArr.map((item,index)=>{
       submitSwipers.map((item1,index1)=>{
         if(index === index1) swipersPathList.push('/images/swiper/' + item + '.' + item1.imgType[0])
-        console.log(item1.imgType,'<<item.imgType[0]')
-
       })
     })
   }
-  console.log(swipersPathList.length,'<<<<<swipersPathList')
-  console.log(swipersPathList.length,'<<<<<swipersPathList')
 
   data.swipers = JSON.stringify(swipersPathList)
 
@@ -174,7 +168,6 @@ module.exports.update = async (req,res) => {
 
   console.log(swiperListBase_64.length,'<传入轮播图数组长度')
 
-  // console.log(imgBase_64)
   // 判断传入图片是否不变
     if(!(imgBase_64.screenshot.includes('/images/appIcon'))) {
       const temp = imgBase_64.name.split('.')
@@ -182,7 +175,6 @@ module.exports.update = async (req,res) => {
       const imgType = temp.filter(item=>(item==='jpg') || (item==='png'))[0]
     // TODO:封装图片上传待优化
       writeFile(imgBase_64,nowDate,'appIcon/',imgType).then(res=>{
-        console.log(res)
         // 上传图片成功后，删除该条数据原图片
         fs.unlink('./public' + AppGameItem.img, function(err) {
           if (err) {
@@ -192,7 +184,6 @@ module.exports.update = async (req,res) => {
         });
       })
       data.img = '/images/appIcon/' + nowDate + '.' + imgType
-      console.log(data.img,'<<<<data.img')
     }else{
       delete data.img
     }
@@ -202,14 +193,12 @@ module.exports.update = async (req,res) => {
   // 判断上传轮播图片是否存在重复
   var swiperLisHad = []
   // let AppGameItemArr = JSON.parse(AppGameItem.swipers)
-  // console.log(AppGameItemArr,swiperListBase_64)
   // swiperLisHad.push(AppGameItemArr.findIndex(item => item.includes('images/swiper/swiper'))) 
   swiperListBase_64.map((item, index)=>{
     // TODO: 字符串截取待优化
 
     if(item.screenshot.includes('images/swiper/swiper')) swiperLisHad.push(item.screenshot.split('8008')[1]) 
   })
-  console.log(swiperLisHad,'<<<<<swiperLisHad')
 
   const submitSwipers = Object.assign([],swiperListBase_64)
   submitSwipers.splice(0,swiperLisHad.length) // 去除原有轮播图
@@ -225,23 +214,17 @@ module.exports.update = async (req,res) => {
 
       nowDateArr.push('swiper' + index + Date.now())
       writeFile(item,nowDateArr[index],'swiper/',item.imgType[0])
-      console.log(item.imgType[0],'<<<<<item.imgType[0]')
     })
   }
   const swipersPathList = []
   if(nowDateArr){
-    console.log(nowDateArr,'<<<now')
     nowDateArr.map((item,index)=>{
       submitSwipers.map((item1,index1)=>{
         if(index === index1) swipersPathList.push('/images/swiper/' + item + '.' + item1.imgType[0])
-      console.log(item1.imgType[0],'<<<<<item1.imgType[0]')
-
       })
     })
   }
-  console.log(swipersPathList.length,'<<<<<swipersPathList')
   swipersPathList.push(...swiperLisHad)
-  console.log(swipersPathList.length,'<<<<<swipersPathList')
 
   data.swipers = JSON.stringify(swipersPathList)
 

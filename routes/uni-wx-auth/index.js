@@ -14,7 +14,6 @@ module.exports.mpWxAuth = async  (req, res) => {
 
 module.exports.mpWxAuthUserInfo = async  (req, res) => {
     const {access_token,openid} = req.body
-    console.log(access_token,openid)
     // 请求微信第三方接口获取用户信息
     request("https://api.weixin.qq.com/sns/userinfo?access_token="+access_token+"&openid="+openid,(error,WxResponse,body)=>{
         if (!error && WxResponse.statusCode == 200) {

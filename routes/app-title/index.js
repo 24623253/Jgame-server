@@ -86,7 +86,6 @@ module.exports.add = async (req, res) => {
 	const createAppTitle = await AppTitle.create({ title, remark, id:uuid.v1() }).catch((err)=> {
 		console.log(err)
 	});
-	console.log(title,remark)
   res.status(200).send({
     data: createAppTitle,
     message: '增加成功！',
