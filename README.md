@@ -23,7 +23,7 @@ git clone https://github.com/24623253/Jgame-server.git
 - 环境
 ```
 node.js v10.8.0   
-MySQL v4.3.1
+MySQL v8.0
 ```
 
 - 安装依赖
